@@ -16,7 +16,7 @@ type Entry struct {
 }
 
 type Value interface {
-	len() int
+	Len() int
 }
 
 //	Constructor of Cache
@@ -46,7 +46,7 @@ func (c *Cache) RemoveOldest() {
 		c.ll.Remove(elm)
 		kv := elm.Value.(*Entry)
 		delete(c.cache, kv.key)
-		c.nBytes -= int64(len(kv.key)) + int64(kv.value.len())
+		c.nBytes -= int64(len(kv.key)) + int64(kv.value.Len())
 		if c.OnEvicted != nil {
 			c.OnEvicted(kv.key, kv.value)
 		}
@@ -58,12 +58,12 @@ func (c *Cache) Add(key string, value Value) {
 	if elm, ok := c.cache[key]; ok {
 		c.ll.MoveToFront(elm)
 		kv := elm.Value.(*Entry)
-		c.nBytes += int64(len(key)) - int64(kv.value.len())
+		c.nBytes += int64(len(key)) - int64(kv.value.Len())
 		kv.value = value
 	} else {
 		elm := c.ll.PushFront(&Entry{key, value})
 		c.cache[key] = elm
-		c.nBytes += int64(len(key)) + int64(value.len())
+		c.nBytes += int64(len(key)) + int64(value.Len())
 	}
 	for c.maxBytes != 0 && c.maxBytes < c.nBytes {
 		c.RemoveOldest()

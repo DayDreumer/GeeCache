@@ -4,7 +4,7 @@ type ByteView struct {
 	b []byte
 }
 
-func (bv ByteView) len() int {
+func (bv ByteView) Len() int {
 	return len(bv.b)
 }
 
