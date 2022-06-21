@@ -65,7 +65,7 @@ func (g *Group) Get(key string) (ByteView, error) {
 }
 
 func (g *Group) load(key string) (value ByteView, err error) {
-	// p3: 调用回调函数getter.Get()函数获取源数据，并加入缓存mainCache中
+	// p3: 调用getter.Get()函数获取源数据，并加入缓存mainCache中
 	return g.getLocally(key)
 }
 

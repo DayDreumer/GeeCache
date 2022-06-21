@@ -7,7 +7,7 @@ type Cache struct {
 	nBytes    int64 //	当前已使用的最大内存
 	ll        *list.List
 	cache     map[string]*list.Element
-	OnEvicted func(key string, value Value) //	记录删除时的回调函数
+	OnEvicted func(key string, value Value) //	记录删除(缓存中不存在)时的回调函数
 }
 
 type Entry struct {
