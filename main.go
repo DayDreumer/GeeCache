@@ -54,15 +54,15 @@ func main() {
 
 	var port int
 	var api bool
-	flag.IntVar(&port, "port", 8001, "Geecache server port")
+	flag.IntVar(&port, "port", 9001, "Geecache server port")
 	flag.BoolVar(&api, "api", false, "Start a api server?")
 	flag.Parse()
 
-	apiAddr := "http://localhost:8888"
+	apiAddr := "http://localhost:9999"
 	addrMap := map[int]string{
-		8001: "http://localhost:8001",
-		8002: "http://localhost:8002",
-		8003: "http://localhost:8003",
+		9001: "http://localhost:9001",
+		9002: "http://localhost:9002",
+		9003: "http://localhost:9003",
 	}
 
 	var addrs []string
